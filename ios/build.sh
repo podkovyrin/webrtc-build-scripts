@@ -517,38 +517,38 @@ function create_archive_of_static_libraries() {
     create_directory_if_not_found libjingle_peerconnection/
     
     # Copy podspec with ios and mac
-    cp -v "$PROJECT_DIR/libjingle_peerconnection.podspec" "libjingle_peerconnection.podspec"
+    cp -v "$PROJECT_DIR/libjingle_peerconnection_searchie.podspec" "libjingle_peerconnection_searchie.podspec"
 
     # inject pod url
     if [ -z $USER_POD_URL ]
     then
         echo "User has not specified a different pod url. Using default"
-        sed -ic "s|{POD_URL}|"$DEFAULT_POD_URL"|g" libjingle_peerconnection.podspec
+        sed -ic "s|{POD_URL}|"$DEFAULT_POD_URL"|g" libjingle_peerconnection_searchie.podspec
     else
         echo "User has specified their own pod url $USER_POD_URL"
-        sed -ic "s|{POD_URL}|"$USER_POD_URL"|g" libjingle_peerconnection.podspec
+        sed -ic "s|{POD_URL}|"$USER_POD_URL"|g" libjingle_peerconnection_searchie.podspec
     fi
     
     # inject revision number
-    sed -ic "s/{WEBRTC_REVISION}/$WEBRTC_REVISION/g" libjingle_peerconnection.podspec
+    sed -ic "s/{WEBRTC_REVISION}/$WEBRTC_REVISION/g" libjingle_peerconnection_searchie.podspec
     # inject build type string
-    sed -ic "s/{BUILD_TYPE_STRING}/$1/g" libjingle_peerconnection.podspec
+    sed -ic "s/{BUILD_TYPE_STRING}/$1/g" libjingle_peerconnection_searchie.podspec
     
     if [ $1 = "Debug" ] 
     then
         VERSION_BUILD=`get_version_build "$WEBRTC_REVISION" 0`
         cp -fv "$BUILD/libWebRTC-$WEBRTC_REVISION-arm-intel-Debug.a" "libjingle_peerconnection/libWebRTC.a"
         cp -fv "$BUILD/libWebRTC-$WEBRTC_REVISION-mac-x86_64-Debug.a" "libjingle_peerconnection/libWebRTC-osx.a"
-        sed -ic "s/{BUILD_TYPE}/0/g" libjingle_peerconnection.podspec
-        sed -ic "s/{VERSION_BUILD}/$VERSION_BUILD/g" libjingle_peerconnection.podspec
+        sed -ic "s/{BUILD_TYPE}/0/g" libjingle_peerconnection_searchie.podspec
+        sed -ic "s/{VERSION_BUILD}/$VERSION_BUILD/g" libjingle_peerconnection_searchie.podspec
     fi
     if [ $1 = "Release" ] 
     then
         VERSION_BUILD=`get_version_build "$WEBRTC_REVISION" 2`
         cp -fv "$BUILD/libWebRTC-$WEBRTC_REVISION-arm-intel-Release.a" "libjingle_peerconnection/libWebRTC.a"
         cp -fv "$BUILD/libWebRTC-$WEBRTC_REVISION-mac-x86_64-Release.a" "libjingle_peerconnection/libWebRTC-osx.a"
-        sed -ic "s/{BUILD_TYPE}/2/g" libjingle_peerconnection.podspec
-        sed -ic "s/{VERSION_BUILD}/$VERSION_BUILD/g" libjingle_peerconnection.podspec
+        sed -ic "s/{BUILD_TYPE}/2/g" libjingle_peerconnection_searchie.podspec
+        sed -ic "s/{VERSION_BUILD}/$VERSION_BUILD/g" libjingle_peerconnection_searchie.podspec
     fi
 
     # write the revision and build type into a file

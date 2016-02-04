@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name         = "libjingle_peerconnection"
+  s.name         = "libjingle_peerconnection_searchie"
   s.version      = "{WEBRTC_REVISION}.{BUILD_TYPE}.{VERSION_BUILD}"
   s.summary      = "WebRTC Video Streaming Peer Connection API's. An iOS WebRTC demo application hosted on App Engine. Builds by Pristine.io"
   s.description      = <<-DESC
@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
 
                        The target audience of this document are those who want to use WebRTC Native APIs to develop native RTC applications.
                        DESC
-  s.homepage     = "https://github.com/pristineio/webrtc-build-scripts"
+  s.homepage     = "https://github.com/podkovyrin/webrtc-build-scripts"
   s.ios.platform = :ios, '7.0'
   s.osx.platform = :osx, '10.8'
   s.author       = { "Rahul Behera" => "rahul@pristine.io" }
@@ -30,8 +30,8 @@ Pod::Spec.new do |s|
   s.ios.framework = 'AVFoundation', 'AudioToolbox', 'CoreGraphics', 'CoreMedia', 'GLKit', 'UIKit', 'VideoToolbox'
   s.libraries = 'c', 'sqlite3', 'stdc++'
   s.requires_arc = true
-  s.xcconfig  =  { 'LIBRARY_SEARCH_PATHS' => '"$(PODS_ROOT)/libjingle_peerconnection"',
-                   'HEADER_SEARCH_PATHS' => '"${PODS_ROOT}/Headers/libjingle_peerconnection"' }
+  s.xcconfig  =  { 'LIBRARY_SEARCH_PATHS' => '"$(PODS_ROOT)/libjingle_peerconnection_searchie"',
+                   'HEADER_SEARCH_PATHS' => '"${PODS_ROOT}/Headers/libjingle_peerconnection_searchie"' }
   s.license      = {
     :type => 'http://www.webrtc.org/license-rights/license',
     :text => <<-LICENSE
