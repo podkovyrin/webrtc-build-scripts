@@ -642,20 +642,9 @@ function patch_common_gypi_for_bitcode() {
 
 # Get webrtc then build webrtc
 function dance() {
-    # These next if statement trickery is so that if you run from the command line and don't set anything to build, it will default to the debug profile.
-    BUILD_DEBUG=true
-
-    if [ "$WEBRTC_RELEASE" = true ] ; then
-        BUILD_DEBUG=false
-    fi
-
-    if [ "$WEBRTC_PROFILE" = true ] ; then
-        BUILD_DEBUG=false
-    fi
-
-    if [ "$BUILD_DEBUG" = true ] ; then
-        WEBRTC_DEBUG=true
-    fi
+    WEBRTC_DEBUG=false
+    WEBRTC_RELEASE=true
+    WEBRTC_PROFILE=false
 
     get_webrtc $@
     patch_common_gypi_for_bitcode
