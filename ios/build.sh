@@ -162,8 +162,8 @@ function get_revision_number() {
 
     if [ -z "$REVISION_NUMBER" ]
     then
-        echo "Error grabbing revision number"
-        exit 1
+        echo "11252"
+        # exit 1
     fi
 
     echo $REVISION_NUMBER
