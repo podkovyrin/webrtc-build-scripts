@@ -109,7 +109,7 @@ function wrbase() {
 # Add the iOS Device specific defines on top of the base
 function wrios_armv7() {
     wrbase
-    export GYP_DEFINES="$GYP_DEFINES OS=ios target_arch=arm"
+    export GYP_DEFINES="$GYP_DEFINES OS=ios target_arch=arm clang_xcode=1"
     export GYP_GENERATOR_FLAGS="output_dir=out_ios_armeabi_v7a"
     export GYP_CROSSCOMPILE=1
 }
@@ -117,7 +117,7 @@ function wrios_armv7() {
 # Add the iOS ARM 64 Device specific defines on top of the base
 function wrios_armv8() {
     wrbase
-    export GYP_DEFINES="$GYP_DEFINES OS=ios target_arch=arm64"
+    export GYP_DEFINES="$GYP_DEFINES OS=ios target_arch=arm64 clang_xcode=1"
     export GYP_GENERATOR_FLAGS="output_dir=out_ios_arm64_v8a"
     export GYP_CROSSCOMPILE=1
 }
@@ -125,21 +125,21 @@ function wrios_armv8() {
 # Add the iOS Simulator X86 specific defines on top of the base
 function wrX86() {
     wrbase
-    export GYP_DEFINES="$GYP_DEFINES OS=ios target_arch=ia32"
+    export GYP_DEFINES="$GYP_DEFINES OS=ios target_arch=ia32 clang_xcode=1"
     export GYP_GENERATOR_FLAGS="output_dir=out_ios_x86"
 }
 
 # Add the iOS Simulator X64 specific defines on top of the base
 function wrX86_64() {
     wrbase
-    export GYP_DEFINES="$GYP_DEFINES OS=ios target_arch=x64 target_subarch=arm64"
+    export GYP_DEFINES="$GYP_DEFINES OS=ios target_arch=x64 target_subarch=arm64 clang_xcode=1"
     export GYP_GENERATOR_FLAGS="output_dir=out_ios_x86_64"
 }
 
 # Add the Mac 64 bit intel defines
 function wrMac64() {
     wrbase
-    export GYP_DEFINES="$GYP_DEFINES OS=mac target_arch=x64 mac_sdk=$MAC_SDK"
+    export GYP_DEFINES="$GYP_DEFINES OS=mac target_arch=x64 mac_sdk=$MAC_SDK clang_xcode=1"
     export GYP_GENERATOR_FLAGS="output_dir=out_mac_x86_64"
 }
 
@@ -617,6 +617,29 @@ function create_ios_framework_for_configuration () {
     popd
 }
 
+function patch_common_gypi_for_bitcode() {
+
+    function sedeasy {
+        sed -i "s/$(echo $1 | sed -e 's/\([[\/.*]\|\]\)/\\&/g')/$(echo $2 | sed -e 's/[\/&]/\\&/g')/g" $3
+    }
+
+    pushd "$WEBRTC/src/build"
+
+    FIND_STR="'OTHER_CFLAGS': [ '<@(release_extra_cflags)', ],"
+    REPLACE_STR="'OTHER_CFLAGS': [ '<@(release_extra_cflags)', '-fembed-bitcode', ],"
+
+    FOUND_STR=$(cat common.gypi | fgrep "$REPLACE_STR")
+    if [ ! -z "$FOUND_STR" -a "$FOUND_STR"!=" " ]
+    then
+        echo "common.gypi already patched"
+    else
+        echo "patching common.gypi"
+        sedeasy "$FIND_STR" "$REPLACE_STR" common.gypi
+    fi
+
+    popd
+}
+
 # Get webrtc then build webrtc
 function dance() {
     # These next if statement trickery is so that if you run from the command line and don't set anything to build, it will default to the debug profile.
@@ -635,6 +658,7 @@ function dance() {
     fi
 
     get_webrtc $@
+    patch_common_gypi_for_bitcode
     build_webrtc
     echo "Finished Dancing!"
 }
