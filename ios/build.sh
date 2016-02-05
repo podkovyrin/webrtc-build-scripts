@@ -448,10 +448,10 @@ function lipo_for_configuration() {
     LIPO_DIRS="$BUILD/libWebRTC-$WEBRTC_REVISION-ios-armeabi_v7a-$CONFIGURATION.a"
     # Add ARM64
     LIPO_DIRS="$LIPO_DIRS $BUILD/libWebRTC-$WEBRTC_REVISION-ios-arm64_v8a-$CONFIGURATION.a"
-    # Add x86
-    LIPO_DIRS="$LIPO_DIRS $BUILD/libWebRTC-$WEBRTC_REVISION-ios-x86-$CONFIGURATION.a"
-    # and add x86_64
-    LIPO_DIRS="$LIPO_DIRS $BUILD/libWebRTC-$WEBRTC_REVISION-ios-x86_64-$CONFIGURATION.a"
+    # # Add x86
+    # LIPO_DIRS="$LIPO_DIRS $BUILD/libWebRTC-$WEBRTC_REVISION-ios-x86-$CONFIGURATION.a"
+    # # and add x86_64
+    # LIPO_DIRS="$LIPO_DIRS $BUILD/libWebRTC-$WEBRTC_REVISION-ios-x86_64-$CONFIGURATION.a"
 
     # Lipo the simulator build with the ios build into a universal library
     lipo -create -output "$BUILD/libWebRTC-$WEBRTC_REVISION-arm-intel-$CONFIGURATION.a" $LIPO_DIRS
@@ -491,8 +491,8 @@ function build_webrtc() {
     pull_depot_tools
     build_apprtc
     build_apprtc_arm64
-    build_apprtc_sim
-    build_apprtc_sim64
+    # build_apprtc_sim
+    # build_apprtc_sim64
     lipo_intel_and_arm
 }
 
