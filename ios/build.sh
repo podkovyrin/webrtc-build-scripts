@@ -640,6 +640,10 @@ function patch_common_gypi_for_bitcode() {
     popd
 }
 
+function cleanup_build_dir() {
+    ls | grep -v src | xargs rm -rf
+}
+
 # Get webrtc then build webrtc
 function dance() {
     WEBRTC_DEBUG=false
@@ -647,6 +651,7 @@ function dance() {
     WEBRTC_PROFILE=false
 
     get_webrtc $@
+    cleanup_build_dir
     patch_common_gypi_for_bitcode
     build_webrtc
     echo "Finished Dancing!"
