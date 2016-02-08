@@ -640,6 +640,18 @@ function patch_common_gypi_for_bitcode() {
     popd
 }
 
+function patch_common_gypi_for_h264() {
+    echo "Patching common.gypi for H264 support..."
+
+    H264_PATCH=$PROJECT_DIR/webrtc_h264.patch
+
+    pushd "$WEBRTC/src/"
+
+    git apply $H264_PATCH --ignore-space-change --ignore-whitespace
+    
+    popd
+}
+
 function cleanup_build_dir() {
     ls | grep -v src | xargs rm -rf
 }
@@ -652,6 +664,7 @@ function dance() {
 
     get_webrtc $@
     cleanup_build_dir
+    patch_common_gypi_for_h264
     # patch_common_gypi_for_bitcode
     build_webrtc
     echo "Finished Dancing!"
