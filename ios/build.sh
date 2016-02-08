@@ -15,7 +15,7 @@ while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symli
 done
 PROJECT_DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
-DEFAULT_WEBRTC_URL="https://chromium.googlesource.com/external/webrtc"
+DEFAULT_WEBRTC_URL="git@github.com:Searchie/webrtc-searchie.git"
 DEFAULT_POD_URL="https://s3.amazonaws.com/libjingle"
 WEBRTC="$PROJECT_DIR/webrtc"
 DEPOT_TOOLS="$PROJECT_DIR/depot_tools"
