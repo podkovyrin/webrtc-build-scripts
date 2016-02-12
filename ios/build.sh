@@ -664,7 +664,7 @@ function dance() {
 
     get_webrtc $@
     cleanup_build_dir
-    patch_common_gypi_for_h264
+    # patch_common_gypi_for_h264
     # patch_common_gypi_for_bitcode
     build_webrtc
     echo "Finished Dancing!"
