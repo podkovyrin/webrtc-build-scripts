@@ -1,0 +1,277 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		7C329C0A1C74B2460049951A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7C329C061C74B2450049951A /* sources_for_indexing.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 40F277AE19E0B608CFFFD778;
+			remoteInfo = sources_for_indexing;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		7C329C061C74B2450049951A /* sources_for_indexing.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = sources_for_indexing.xcodeproj; path = webrtc/src/sources_for_indexing.xcodeproj; sourceTree = "<group>"; };
+		7C761BB21C74649A00568B3A /* libKYWebRTC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libKYWebRTC.a; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		7C329C071C74B2450049951A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7C329C0B1C74B2460049951A /* sources_for_indexing */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7C761BA91C74649A00568B3A = {
+			isa = PBXGroup;
+			children = (
+				7C329C061C74B2450049951A /* sources_for_indexing.xcodeproj */,
+				7C761BB41C74649A00568B3A /* KYWebRTC */,
+				7C761BB31C74649A00568B3A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7C761BB31C74649A00568B3A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7C761BB21C74649A00568B3A /* libKYWebRTC.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7C761BB41C74649A00568B3A /* KYWebRTC */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = KYWebRTC;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7C761BB11C74649A00568B3A /* KYWebRTC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7C761BBB1C74649A00568B3A /* Build configuration list for PBXNativeTarget "KYWebRTC" */;
+			buildPhases = (
+				7C761BBE1C74651B00568B3A /* Build Script */,
+				7C66E9381C74A36F00ADBC3A /* Copy Script */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KYWebRTC;
+			productName = KYWebRTC;
+			productReference = 7C761BB21C74649A00568B3A /* libKYWebRTC.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7C761BAA1C74649A00568B3A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Alexey Bromot";
+				TargetAttributes = {
+					7C761BB11C74649A00568B3A = {
+						CreatedOnToolsVersion = 7.2;
+					};
+				};
+			};
+			buildConfigurationList = 7C761BAD1C74649A00568B3A /* Build configuration list for PBXProject "KYWebRTC" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7C761BA91C74649A00568B3A;
+			productRefGroup = 7C761BB31C74649A00568B3A /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 7C329C071C74B2450049951A /* Products */;
+					ProjectRef = 7C329C061C74B2450049951A /* sources_for_indexing.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				7C761BB11C74649A00568B3A /* KYWebRTC */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		7C329C0B1C74B2460049951A /* sources_for_indexing */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = sources_for_indexing;
+			remoteRef = 7C329C0A1C74B2460049951A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7C66E9381C74A36F00ADBC3A /* Copy Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "CONFIGURATION_PLATFORM_NAME=$CONFIGURATION$EFFECTIVE_PLATFORM_NAME\n\nsource build.sh\n\necho \"Create target build directory if it doesn't exist\"\nmkdir -p $BUILD_DIR/$CONFIGURATION_PLATFORM_NAME\n\necho \"Copy library to build directory\"\ncp $WEBRTC/libWebRTC-LATEST-Universal-Release.a $BUILD_DIR/$CONFIGURATION_PLATFORM_NAME/lib$PRODUCT_NAME.a";
+		};
+		7C761BBE1C74651B00568B3A /* Build Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "source build.sh\ndance";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		7C761BB91C74649A00568B3A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		7C761BBA1C74649A00568B3A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7C761BBC1C74649A00568B3A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		7C761BBD1C74649A00568B3A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7C761BAD1C74649A00568B3A /* Build configuration list for PBXProject "KYWebRTC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7C761BB91C74649A00568B3A /* Debug */,
+				7C761BBA1C74649A00568B3A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7C761BBB1C74649A00568B3A /* Build configuration list for PBXNativeTarget "KYWebRTC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7C761BBC1C74649A00568B3A /* Debug */,
+				7C761BBD1C74649A00568B3A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7C761BAA1C74649A00568B3A /* Project object */;
+}
