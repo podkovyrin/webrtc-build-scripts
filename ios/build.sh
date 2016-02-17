@@ -23,6 +23,9 @@ BUILD="$WEBRTC/libjingle_peerconnection_builds"
 WEBRTC_TARGET="libWebRTC_objc"
 MAC_SDK="10.9"
 
+#Set false for debug from Xcode
+STRIP_DEBUG_SYMBOLS=true
+
 function create_directory_if_not_found() {
     if [ ! -d "$1" ];
     then
@@ -299,7 +302,9 @@ function build_webrtc_mac() {
       if [ "$WEBRTC_RELEASE" = true ] ; then
           exec_ninja "out_mac_x86_64/Release/"
           exec_libtool "$BUILD/libWebRTC-$WEBRTC_REVISION-mac-x86_64-Release.a" "$WEBRTC"/src/out_mac_x86_64/Release/*.a
-          exec_strip "$BUILD/libWebRTC-$WEBRTC_REVISION-mac-x86_64-Release.a"
+          if [ "$STRIP_DEBUG_SYMBOLS" = true ] ; then
+            exec_strip "$BUILD/libWebRTC-$WEBRTC_REVISION-mac-x86_64-Release.a"
+          fi
       fi
     else
       echo "Change the OSX Target by changing the MAC_SDK environment variable to 10.9. There is a bug with building mac target 10.10 (it assumes its 10.1 and lower than 10.8)"
@@ -335,7 +340,9 @@ function build_apprtc_sim() {
     if [ "$WEBRTC_RELEASE" = true ] ; then
         exec_ninja "out_ios_x86/Release-iphonesimulator/"
         exec_libtool "$BUILD/libWebRTC-$WEBRTC_REVISION-ios-x86-Release.a" "$WEBRTC"/src/out_ios_x86/Release-iphonesimulator/*.a
-        exec_strip "$BUILD/libWebRTC-$WEBRTC_REVISION-ios-x86-Release.a"
+        if [ "$STRIP_DEBUG_SYMBOLS" = true ] ; then
+            exec_strip "$BUILD/libWebRTC-$WEBRTC_REVISION-ios-x86-Release.a"
+        fi
     fi
 }
 
@@ -363,7 +370,9 @@ function build_apprtc_sim64() {
     if [ "$WEBRTC_RELEASE" = true ] ; then
         exec_ninja "out_ios_x86_64/Release-iphonesimulator/"
         exec_libtool "$BUILD/libWebRTC-$WEBRTC_REVISION-ios-x86_64-Release.a" "$WEBRTC"/src/out_ios_x86_64/Release-iphonesimulator/*.a
-        exec_strip "$BUILD/libWebRTC-$WEBRTC_REVISION-ios-x86_64-Release.a"
+        if [ "$STRIP_DEBUG_SYMBOLS" = true ] ; then
+            exec_strip "$BUILD/libWebRTC-$WEBRTC_REVISION-ios-x86_64-Release.a"
+        fi
     fi
 }
 
@@ -391,7 +400,9 @@ function build_apprtc() {
     if [ "$WEBRTC_RELEASE" = true ] ; then
         exec_ninja "out_ios_armeabi_v7a/Release-iphoneos/"
         exec_libtool "$BUILD/libWebRTC-$WEBRTC_REVISION-ios-armeabi_v7a-Release.a" "$WEBRTC"/src/out_ios_armeabi_v7a/Release-iphoneos/*.a
-        exec_strip "$BUILD/libWebRTC-$WEBRTC_REVISION-ios-armeabi_v7a-Release.a"
+        if [ "$STRIP_DEBUG_SYMBOLS" = true ] ; then
+            exec_strip "$BUILD/libWebRTC-$WEBRTC_REVISION-ios-armeabi_v7a-Release.a"
+        fi
     fi
 }
 
@@ -420,7 +431,9 @@ function build_apprtc_arm64() {
     if [ "$WEBRTC_RELEASE" = true ] ; then
         exec_ninja "out_ios_arm64_v8a/Release-iphoneos/"
         exec_libtool "$BUILD/libWebRTC-$WEBRTC_REVISION-ios-arm64_v8a-Release.a" "$WEBRTC"/src/out_ios_arm64_v8a/Release-iphoneos/*.a
-        exec_strip "$BUILD/libWebRTC-$WEBRTC_REVISION-ios-arm64_v8a-Release.a"
+        if [ "$STRIP_DEBUG_SYMBOLS" = true ] ; then
+            exec_strip "$BUILD/libWebRTC-$WEBRTC_REVISION-ios-arm64_v8a-Release.a"
+        fi
     fi
 }
 
